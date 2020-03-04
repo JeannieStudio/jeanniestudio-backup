@@ -23,7 +23,7 @@
   <meta name="description" content="最初的ssr+bbr，留个备份也好……">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一键搭建ssr+bbr">
-<meta property="og:url" content="https://jeanniestudio.github.io/MyBlog/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/index.html">
+<meta property="og:url" content="https://jeanniestudio.github.io/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/index.html">
 <meta property="og:site_name" content="Jeannie Studio">
 <meta property="og:description" content="最初的ssr+bbr，留个备份也好……">
 <meta property="og:locale" content="zh_CN">
@@ -43,7 +43,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2.png?raw=true">
 
-<link rel="canonical" href="https://jeanniestudio.github.io/MyBlog/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/">
+<link rel="canonical" href="https://jeanniestudio.github.io/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/">
 
 
 <script id="page-configurations">
@@ -200,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jeanniestudio.github.io/MyBlog/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/">
+    <link itemprop="mainEntityOfPage" href="https://jeanniestudio.github.io/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -241,6 +241,20 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/30/一键搭建ssr+bbr/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
             <div class="post-description">最初的ssr+bbr，留个备份也好……</div>
 
         </div>
@@ -323,6 +337,13 @@
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -517,6 +538,37 @@
   
 
   
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jeanniestudio.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://jeanniestudio.github.io/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/";
+    this.page.identifier = "2019/12/30/一键搭建ssr+bbr/";
+    this.page.title = "一键搭建ssr+bbr";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeanniestudio.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
 
 </body>
 </html>

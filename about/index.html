@@ -23,7 +23,7 @@
   <meta name="description" content="你好吗我是珍妮">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
-<meta property="og:url" content="https://jeanniestudio.github.io/MyBlog/about/index.html">
+<meta property="og:url" content="https://jeanniestudio.github.io/about/index.html">
 <meta property="og:site_name" content="Jeannie Studio">
 <meta property="og:description" content="你好吗我是珍妮">
 <meta property="og:locale" content="zh_CN">
@@ -32,7 +32,7 @@
 <meta property="article:author" content="Jeannie">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://jeanniestudio.github.io/MyBlog/about/">
+<link rel="canonical" href="https://jeanniestudio.github.io/about/">
 
 
 <script id="page-configurations">
@@ -225,6 +225,13 @@
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -418,6 +425,37 @@
   
 
   
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jeanniestudio.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://jeanniestudio.github.io/about/index.html";
+    this.page.identifier = "about/index.html";
+    this.page.title = "about";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeanniestudio.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
 
 </body>
 </html>
