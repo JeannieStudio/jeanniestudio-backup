@@ -152,7 +152,7 @@
     <title>最坚挺的出国方式：v2ray+CDN+Ngnix+Websocket</title>
     <url>/2020/02/15/%E6%9C%80%E5%9D%9A%E6%8C%BA%E5%87%BA%E5%9B%BD%E6%96%B9%E5%BC%8F%EF%BC%9Av2ray+CDN+Ngnix+websocket/</url>
     <content><![CDATA[<h2 id="一、开启BBR"><a href="#一、开启BBR" class="headerlink" title="一、开启BBR"></a>一、开启BBR</h2><p><strong>Debian9 自带BBR，所以可以直接通过参数开启BBR加速。打开/etc/sysctl.conf，添加以下2行代码：</strong></p>
-<p>说明：作者习惯用windows连接工具登录到vps进行修改，下面链接是WINSCP连接VPS的教程，喜欢的小伙伴可以去看看。<br>  <a href="https://jeanniestudio.github.io/blog/%E4%BD%BF%E7%94%A8winscp%E8%BF%9E%E6%8E%A5vps%E6%95%99%E7%A8%8B-%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/" target="_blank" rel="noopener">winscp工具使用教程</a><br>  <a id="more"></a></p>
+<p>说明：作者习惯用windows连接工具登录到vps进行修改，下面链接是WINSCP连接VPS的教程，喜欢的小伙伴可以去看看。<br>  <a href="https://jeanniestudio.github.io/2020/02/14/%E4%BD%BF%E7%94%A8WINSCP%E8%BF%9E%E6%8E%A5VPS%E6%95%99%E7%A8%8B--%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/">winscp工具使用教程</a><br>  <a id="more"></a></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net.core.default_qdisc&#x3D;fq</span><br><span class="line">net.ipv4.tcp_congestion_control&#x3D;bbr</span><br></pre></td></tr></table></figure>
 <p><strong>添加并保存，完成之后别忘了执行以下命令重启：</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
