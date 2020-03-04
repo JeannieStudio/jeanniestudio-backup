@@ -60,7 +60,7 @@
 <p>/etc/shadowsocks-libev/config.json</p>
 <h2 id="ssr配置"><a href="#ssr配置" class="headerlink" title="ssr配置:"></a>ssr配置:</h2><p><strong>修改配置文件：/etc/shadowsocks-r/config.json，只需要修改2处：</strong></p>
 <p>1.”server_port”: 端口改为443</p>
-<p>2.”redirect”: [“*:443#127.0.0.1:1234”]  添加这一句，注意1234这个端口号要和Caddyfile里的端口保持一致。</p>
+<p>2.”redirect”: [“*:443#127.0.0.1:4413”]<br> 添加这一句，注意1234这个端口号要和Caddyfile里的端口保持一致。</p>
 <p><strong>修改好后重启ssr: /etc/init.d/shadowsocks-r restart.</strong></p>
 <p>大功告成！！！</p>
 <h2 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h2><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
