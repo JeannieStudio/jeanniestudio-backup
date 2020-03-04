@@ -254,20 +254,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>使用Winscp连接VPS教程--一键脚本</title>
-    <url>/2020/02/14/%E4%BD%BF%E7%94%A8WINSCP%E8%BF%9E%E6%8E%A5VPS%E6%95%99%E7%A8%8B--%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h4 id="winscp工具下载"><a href="#winscp工具下载" class="headerlink" title="winscp工具下载"></a>winscp工具下载</h4><p> 在谷歌云上创建好了vps后如何用第三方工具进行连接，从而实现文件的修改、上传和下载呢？这就用到了第三方工具WINSCP，下面给出下载地址：</p>
-<p>绿色免安装版本：(<a href="http://winscp.net/download/WinSCP-5.15.9-Portable.zip" target="_blank" rel="noopener">http://winscp.net/download/WinSCP-5.15.9-Portable.zip</a>)</p>
-<h4 id="在vps上修改配置"><a href="#在vps上修改配置" class="headerlink" title="在vps上修改配置"></a>在vps上修改配置</h4><p>执行一键脚本设置root用户登录密码：<br>这个脚本也是jeannie本人整理的，如有问题请留言，enjoy😀</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O addpwd.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;addpwd.sh</span><br><span class="line">chmod +x addpwd.sh</span><br><span class="line">.&#x2F;addpwd.sh 2&gt;&amp;1 | tee addpwd.log</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="用winscp连接vps"><a href="#用winscp连接vps" class="headerlink" title="用winscp连接vps"></a>用winscp连接vps</h4><p>打开WINCSCP，协议选择：SCP，ip输入vps的IP地址即可，用户名root,密码为刚刚设置的密码。</p>
-<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%BF%9E%E6%8E%A5vps.png?raw=true" alt="连接vps"></p>
-<h4 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h4><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>使用Winscp连接VPS教程</title>
     <url>/2020/02/14/%E4%BD%BF%E7%94%A8WINSCP%E8%BF%9E%E6%8E%A5VPS%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="winscp工具下载"><a href="#winscp工具下载" class="headerlink" title="winscp工具下载"></a>winscp工具下载</h2><p> 在谷歌云上创建好了vps后如何用第三方工具进行连接，从而实现文件的修改、上传和下载呢？这就用到了第三方工具WINSCP，下面给出下载地址：</p>
@@ -285,6 +271,20 @@
 <h2 id="用winscp连接vps"><a href="#用winscp连接vps" class="headerlink" title="用winscp连接vps"></a>用winscp连接vps</h2><p>打开WINCSCP，协议选择：SCP，ip输入vps的IP地址即可，用户名root,密码为刚刚设置的密码。</p>
 <p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%BF%9E%E6%8E%A5vps.png?raw=true" alt="连接vps"></p>
 <h2 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h2><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用Winscp连接VPS教程--一键脚本</title>
+    <url>/2020/02/14/%E4%BD%BF%E7%94%A8WINSCP%E8%BF%9E%E6%8E%A5VPS%E6%95%99%E7%A8%8B--%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h4 id="winscp工具下载"><a href="#winscp工具下载" class="headerlink" title="winscp工具下载"></a>winscp工具下载</h4><p> 在谷歌云上创建好了vps后如何用第三方工具进行连接，从而实现文件的修改、上传和下载呢？这就用到了第三方工具WINSCP，下面给出下载地址：</p>
+<p>绿色免安装版本：(<a href="http://winscp.net/download/WinSCP-5.15.9-Portable.zip" target="_blank" rel="noopener">http://winscp.net/download/WinSCP-5.15.9-Portable.zip</a>)</p>
+<h4 id="在vps上修改配置"><a href="#在vps上修改配置" class="headerlink" title="在vps上修改配置"></a>在vps上修改配置</h4><p>执行一键脚本设置root用户登录密码：<br>这个脚本也是jeannie本人整理的，如有问题请留言，enjoy😀</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O addpwd.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;addpwd.sh</span><br><span class="line">chmod +x addpwd.sh</span><br><span class="line">.&#x2F;addpwd.sh 2&gt;&amp;1 | tee addpwd.log</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="用winscp连接vps"><a href="#用winscp连接vps" class="headerlink" title="用winscp连接vps"></a>用winscp连接vps</h4><p>打开WINCSCP，协议选择：SCP，ip输入vps的IP地址即可，用户名root,密码为刚刚设置的密码。</p>
+<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%BF%9E%E6%8E%A5vps.png?raw=true" alt="连接vps"></p>
+<h4 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h4><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
 ]]></content>
   </entry>
   <entry>
