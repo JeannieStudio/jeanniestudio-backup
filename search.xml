@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>无敌了！ssr+tls+caddy+bbr一键搭建</title>
+    <url>/2020/03/05/%E6%97%A0%E6%95%8C%E4%BA%86%EF%BC%81ssr-tls-caddy-bbr%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>由于很多萌新对配置caddy不是特别熟悉，所以整理了一个ssr+tls+acddy+bbr一键搭建的脚本，供大家参考。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><strong>注：执行脚本之前需要准备一个域名并和将要搭建的vps解析成功。</strong></p>
+<p>切换到root用户：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+<p>执行一键搭建脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O ssr-caddy-tls.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;ssr-caddy-tls.sh</span><br><span class="line">chmod +x ssr-caddy-tls.sh</span><br><span class="line">.&#x2F;ssr-caddy-tls.sh 2&gt;&amp;1 | tee ssr-caddy-tls.log</span><br></pre></td></tr></table></figure>
+
+<p>按照提示一步步执行就可以了。</p>
+<p><strong>caddy相关:</strong><br>启动：supervisorctl start caddy<br>停止：supervisorctl stop caddy<br>重启：supervisorctl restart caddy<br>查看状态：supervisorctl status<br>安装目录为：/usr/local/bin/caddy<br>配置文件位置：/etc/caddy/Caddyfile</p>
+<p><strong>ssr相关：</strong><br>启动：/etc/init.d/shadowsocks-r start<br>停止：/etc/init.d/shadowsocks-r stop<br>重启：/etc/init.d/shadowsocks-r restart<br>查看状态：/etc/init.d/shadowsocks-rstatus<br>配置文件位置：/etc/shadowsocks-r/config.json</p>
+<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>地址：填写域名；端口：443；其他就按您配置的时候怎么设置就怎么填。</p>
+<h3 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h3><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>ssr+tls+caddy仍然稳得一批</title>
     <url>/2020/02/26/ssr+tls+caddy%E4%BB%8D%E7%84%B6%E7%A8%B3%E5%BE%97%E4%B8%80%E6%89%B9/</url>
     <content><![CDATA[<h2 id="Caddy与Nginx对比："><a href="#Caddy与Nginx对比：" class="headerlink" title="Caddy与Nginx对比："></a>Caddy与Nginx对比：</h2><p>caddy具有以下优点：<br>1.go语言写的可以跨平台，无需安装任何依赖。<br>2.安装和配置简单，不管你是新的web开发者，还是专业人士，都能够快速上手。<br>3.默认使用Let’s Encrypt提供的免费证书，自动让网站升级到HTTPS。最重要的是可以自动更新证书，永远不担心证书过期哟。<br>4.更合个人小型项目。</p>
