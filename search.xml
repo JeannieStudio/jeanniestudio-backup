@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>caddy+http.forwardproxy +filebrowser--手工搭建过程</title>
+    <url>/2020/03/14/caddy+http.forwardproxy%20+filebrowser--%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>大家是否知道caddy有一款插件叫做：http.forwardproxy，只要我们安装上这二者，然后稍加配置，就可以愉快的在世界网络中穿梭了，是不是很神奇?Let’s get started.</strong></p>
+<h3 id="安装并配置"><a href="#安装并配置" class="headerlink" title="安装并配置"></a>安装并配置</h3><h4 id="安装caddy-http-forwardproxy"><a href="#安装caddy-http-forwardproxy" class="headerlink" title="安装caddy+http.forwardproxy"></a>安装caddy+http.forwardproxy</h4><p>官网上就有安装命令，链接：<a href="https://caddyserver.com/v1/download" target="_blank" rel="noopener">https://caddyserver.com/v1/download</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;getcaddy.com | bash -s personal http.forwardproxy</span><br></pre></td></tr></table></figure>
+
+<p>首先在/etc目录下新建一个名为caddy的目录，用于存放caddy的配置文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;etc&#x2F;caddy</span><br></pre></td></tr></table></figure>
+<p>然后再新建一个用于存放网站的目录，<strong>注意替换您的域名</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;var&#x2F;www&#x2F;您的域名</span><br></pre></td></tr></table></figure>
+<p>下面要创建一个名为Caddyfile的配置文件，直接执行如下命令，<strong>注意替换域名、邮箱，用户名和密码</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;http:&#x2F;&#x2F;您的域名:80  &#123;</span><br><span class="line">      redir https:&#x2F;&#x2F;您的域名:443&#123;url&#125;</span><br><span class="line">&#125; </span><br><span class="line">https:&#x2F;&#x2F;您的域名:443  &#123;  </span><br><span class="line">        gzip  </span><br><span class="line">	timeouts none</span><br><span class="line">	tls 您的邮箱</span><br><span class="line">   root &#x2F;var&#x2F;www&#x2F;您的域名</span><br><span class="line">   forwardproxy &#123;</span><br><span class="line">        hide_ip</span><br><span class="line">        hide_via</span><br><span class="line">       basicauth 你的用户名 你的密码</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;&quot; &gt; &#x2F;etc&#x2F;caddy&#x2F;Caddyfile</span><br></pre></td></tr></table></figure>
+<p>这时候直接运行下面命令就可以启动caddy服务了，中间会询问你是否下载tls证书，选择y，就自动配置好tls证书了，是不是很贴心？？ </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">caddy -conf &#x2F;etc&#x2F;Caddy</span><br></pre></td></tr></table></figure>
+<p>然鹅，这样启动了caddy服务后，这个终端就不能再执行其他命令了（除非重新打开一个ssh终端），关闭和重启caddy服务都很麻烦，我们希望执行一条命令就可以后台重启服务了，再执行一条命令就关闭了，这就需要安装进程管理工具。</p>
+<hr>
+<h4 id="安装和配置Supervisor"><a href="#安装和配置Supervisor" class="headerlink" title="安装和配置Supervisor"></a>安装和配置Supervisor</h4><p>Supervisor 是基于 Python 的进程管理工具，可以帮助我们更简单的启动、重启和停止服务器上的后台进程，是 Linux 服务器管理的效率工具。</p>
+<p>安装执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install supervisor</span><br></pre></td></tr></table></figure>
+<p>下面将caddy配置成一个服务，执行命令：（这条命令不用改任何东西）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;[program:caddy]command &#x3D; &#x2F;usr&#x2F;local&#x2F;bin&#x2F;caddy -log stdout -agree&#x3D;true -conf&#x3D;&#x2F;etc&#x2F;caddy&#x2F;Caddyfiledirectory &#x3D; &#x2F;etc&#x2F;caddyautorstart&#x3D;trueenvironment&#x3D;CADDYPATH&#x3D;&#x2F;etc&#x2F;ssl&#x2F;caddy&quot; &gt; &#x2F;etc&#x2F;supervisor&#x2F;conf.d&#x2F;caddy.conf</span><br></pre></td></tr></table></figure>
+
+
+<p>supervisorctrl是supervisor的客户端工具，本身安装完会不加载任何配置启动，所以要先杀死</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">supervisorctl shutdown</span><br></pre></td></tr></table></figure>
+<p>再加载配置重新启动，这时候应该已经启动了caddy了，为了保险再执行下后两条吧</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">supervisord -c &#x2F;etc&#x2F;supervisor&#x2F;supervisord.conf</span><br></pre></td></tr></table></figure>
+<p>关闭caddy服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">supervisorctl stop caddy</span><br></pre></td></tr></table></figure>
+<p>启动caddy服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">supervisorctl restart caddy</span><br></pre></td></tr></table></figure>
+<p>这样以后管理caddy就执行以下命令就可以了：</p>
+<p>启动：supervisorctl start caddy<br>停止：supervisorctl stop caddy<br>重启：supervisorctl restart caddy<br>查看状态：supervisorctl status<br>安装目录为：/usr/local/bin/caddy<br>配置文件位置：/etc/caddy/Caddyfile</p>
+<h4 id="安装bbr四合一脚本："><a href="#安装bbr四合一脚本：" class="headerlink" title="安装bbr四合一脚本："></a>安装bbr四合一脚本：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate &quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;chiakge&#x2F;Linux-NetSpeed&#x2F;master&#x2F;tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; .&#x2F;tcp.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p><strong>windows端：</strong><br>我用的chrome浏览器，下载Proxy SwitchyOmega插件，安装如下填写：</p>
+<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E9%85%8D%E7%BD%AE0000000.jpg?raw=true" alt="配置"><br>点击左下侧的“应用选项”就可以出国旅游了。</p>
+<p><strong>ios端</strong><br>用小火箭即可，地址填域名，用户名和密码是Caddyfile里填的用户名和密码：<br><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/ios0001.jpg?raw=true" alt="ios"></p>
+<hr>
+<p><strong>至此，您可以再世界网络穿梭了。但是您测试一下网速，是不是不尽人意？？？？其实您还需要安装<br>naiveproxy</strong></p>
+<hr>
+<h3 id="配置伪装网站"><a href="#配置伪装网站" class="headerlink" title="配置伪装网站"></a>配置伪装网站</h3><p><strong>选泽一：伪装成一个非常卡哇伊的好玩的网站，类似下面这样</strong></p>
+<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/002.gif?raw=true" alt="动图"></p>
+<p>依次执行下面这2条命令即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;HFIProgramming&#x2F;mikutap.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp -r &#x2F;var&#x2F;www&#x2F;mikutap&#x2F;. &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<p>如果您选择了这个后不满意，又想安装下面那个私有云盘需要先执行下面两条命令再去执行私有云盘的脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<p><strong>选择二：安装filebrowser伪装成一个个人在线私有云盘</strong><br><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/03.gif?raw=true" alt=""><br>上期给小伙伴演示了配置一个静态网站进行伪装，有朋友说比较浪费，好吧，那么就配置一个个人私有网盘，当个U盘使用吧，放上去的东西千万要本地备份，不然ip被封了文件找不回来了，哭都找不着地方哦😂</p>
+<p>安装filebrowser</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -fsSL https:&#x2F;&#x2F;filebrowser.xyz&#x2F;get.sh | bash</span><br></pre></td></tr></table></figure>
+<p>创建配置数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filebrowser -d &#x2F;etc&#x2F;filebrowser.db config init</span><br></pre></td></tr></table></figure>
+
+<p>设置监听地址(0.0.0.0表示任意地址的主机都可以访问个人云盘，您也可以换成您自己的个人主机IP)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filebrowser -d &#x2F;etc&#x2F;filebrowser.db config set --address 0.0.0.0</span><br></pre></td></tr></table></figure>
+<p>设置监听端口，端口号随意填写（1-65535）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filebrowser -d &#x2F;etc&#x2F;filebrowser.db config set --port 9978</span><br></pre></td></tr></table></figure>
+<p>设置语言环境</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filebrowser -d &#x2F;etc&#x2F;filebrowser.db config set --locale zh-cn</span><br></pre></td></tr></table></figure>
+<p>设置日志位置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filebrowser -d &#x2F;etc&#x2F;filebrowser.db config set --log &#x2F;var&#x2F;log&#x2F;filebrowser.log</span><br></pre></td></tr></table></figure>
+<p>用户名密码换成您自己的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filebrowser -d &#x2F;etc&#x2F;filebrowser.db users add 用户名 密码 --perm.admin</span><br></pre></td></tr></table></figure>
+<p>上述配置完成后，启动执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filebrowser -d &#x2F;etc&#x2F;filebrowser.db</span><br></pre></td></tr></table></figure>
+
+<p>启动成功后在浏览器输入 IP:端口，示例：http://您的vps的IP地址.1:9978就可以看到上面那个个人网盘登录界面了</p>
+<hr>
+<hr>
+<p><strong>将File Browser配置成一个服务让它后台运行</strong></p>
+<p>下载 File Browser 的 service 文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;cdn.mivm.cn&#x2F;www.mivm.cn&#x2F;archives&#x2F;filebrowser&#x2F;filebrowser.service -o &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;filebrowser.service</span><br></pre></td></tr></table></figure>
+
+<p>加载配置文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<p>设置开机自启动：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl enable filebrowser.service</span><br></pre></td></tr></table></figure>
+
+<p>下面是一些命令：</p>
+<p>运行：systemctl start filebrowser.service<br>停止：systemctl stop filebrowser.service<br>重启：systemctl restart filebrowser.service<br>查看运行状态：systemctl status filebrowser.service</p>
+<p><strong>caddy++filebrowser搭配：</strong><br>修改caddy配置文件,其实就是加了一行：proxy / 127.0.0.1:9978，注意端口号9978就是上面那个端口。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;http:&#x2F;&#x2F;您的域名:80  &#123;</span><br><span class="line">      redir https:&#x2F;&#x2F;您的域名:443&#123;url&#125;</span><br><span class="line">&#125; </span><br><span class="line">https:&#x2F;&#x2F;您的域名:443  &#123;  </span><br><span class="line">        gzip  </span><br><span class="line">	timeouts none</span><br><span class="line">	tls 您的邮箱</span><br><span class="line">   root &#x2F;var&#x2F;www&#x2F;您的域名</span><br><span class="line">   forwardproxy &#123;</span><br><span class="line">        hide_ip</span><br><span class="line">        hide_via</span><br><span class="line">       basicauth 你的用户名 你的密码</span><br><span class="line">    &#125;</span><br><span class="line">   proxy &#x2F; 127.0.0.1:9978</span><br><span class="line">&#125;&quot; &gt; &#x2F;etc&#x2F;caddy&#x2F;Caddyfile</span><br></pre></td></tr></table></figure>
+<p>重启caddy</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">supervisorctl restart caddy</span><br></pre></td></tr></table></figure>
+<p>启动成功后在浏览器输入 IP:端口，示例：http://您的vps的IP地址.1:9978就可以看到上面那个个人网盘登录界面了。大功告成了！</p>
+]]></content>
+  </entry>
+  <entry>
     <title>无敌了！ssr+tls+caddy+bbr一键搭建</title>
     <url>/2020/03/05/%E6%97%A0%E6%95%8C%E4%BA%86%EF%BC%81ssr-tls-caddy-bbr%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>由于很多萌新对配置caddy不是特别熟悉，所以整理了一个ssr+tls+acddy+bbr一键搭建的脚本，供大家参考。</p>
