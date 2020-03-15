@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>caddy+http.forwardproxy +filebrowser+bbr-一键搭建</title>
+    <url>/2020/03/14/caddy+http.forwardproxy%20+filebrowser+bbr-%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>大家是否知道caddy有一款插件叫做：http.forwardproxy，只要我们安装上这二者，然后稍加配置，就可以愉快的在世界网络中穿梭了，是不是很神奇?Let’s get started.</strong></p>
+<h3 id="安装并配置"><a href="#安装并配置" class="headerlink" title="安装并配置"></a>安装并配置</h3><h4 id="安装caddy-http-forwardproxy"><a href="#安装caddy-http-forwardproxy" class="headerlink" title="安装caddy+http.forwardproxy"></a>安装caddy+http.forwardproxy</h4><p>下面直接给出了一键搭建脚本，想了解原理和手工搭建过程的可以参考这个：<a href="https://jeanniestudio.top/2020/03/14/caddy+http.forwardproxy%20+filebrowser--%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" target="_blank" rel="noopener">链接</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O caddy-forwardproxy.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;caddy-forwardproxy.sh</span><br><span class="line">chmod +x caddy-forwardproxy.sh</span><br><span class="line">.&#x2F;caddy-forwardproxy.sh 2&gt;&amp;1 | tee caddy-forwardproxy.log</span><br></pre></td></tr></table></figure>
+<p>安装bbr四合一脚本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate &quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;chiakge&#x2F;Linux-NetSpeed&#x2F;master&#x2F;tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; .&#x2F;tcp.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p><strong>windows端：</strong><br>我用的chrome浏览器，下载Proxy SwitchyOmega插件，安装如下填写：</p>
+<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E9%85%8D%E7%BD%AE0000000.jpg?raw=true" alt="配置"><br>点击左下侧的“应用选项”就可以出国旅游了。</p>
+<p><strong>ios端</strong><br>用小火箭即可，地址填域名，用户名和密码是Caddyfile里填的用户名和密码：<br><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/ios0001.jpg?raw=true" alt="ios"></p>
+<hr>
+<p><strong>至此，您可以再世界网络穿梭了。</strong></p>
+<hr>
+<h3 id="配置伪装网站"><a href="#配置伪装网站" class="headerlink" title="配置伪装网站"></a>配置伪装网站</h3><p><strong>选泽一：伪装成一个非常卡哇伊的好玩的网站，类似下面这样</strong></p>
+<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/002.gif?raw=true" alt="动图"></p>
+<p>依次执行下面这2条命令即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install git -y</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;HFIProgramming&#x2F;mikutap.git &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+
+<p>如果您选择了这个后不满意，又想安装下面那个私有云盘需要先执行下面两条命令再去执行私有云盘的脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<p><strong>选择二：安装filebrowser伪装成一个个人在线私有云盘</strong><br><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/03.gif?raw=true" alt=""><br>上期给小伙伴演示了配置一个静态网站进行伪装，有朋友说比较浪费，好吧，那么就配置一个个人私有网盘，当个U盘使用吧，放上去的东西千万要本地备份，不然ip被封了文件找不回来了，哭都找不着地方哦😂</p>
+<p>下面直接给出一键脚本，想了解如何手工安装可以参考这里：<a href="https://jeanniestudio.top/2020/03/14/caddy+http.forwardproxy%20+filebrowser--%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" target="_blank" rel="noopener">链接</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O filebrowser.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;filebrowser.sh</span><br><span class="line">chmod +x filebrowser.sh</span><br><span class="line">.&#x2F;filebrowser.sh 2&gt;&amp;1 | tee filebrowser.log</span><br></pre></td></tr></table></figure>
+<p>启动成功后在浏览器输入您的域名就可以看到上面那个个人网盘登录界面了。大功告成了！</p>
+]]></content>
+  </entry>
+  <entry>
     <title>caddy+http.forwardproxy +filebrowser--手工搭建过程</title>
     <url>/2020/03/14/caddy+http.forwardproxy%20+filebrowser--%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>大家是否知道caddy有一款插件叫做：http.forwardproxy，只要我们安装上这二者，然后稍加配置，就可以愉快的在世界网络中穿梭了，是不是很神奇?Let’s get started.</strong></p>
@@ -45,8 +76,10 @@
 <h3 id="配置伪装网站"><a href="#配置伪装网站" class="headerlink" title="配置伪装网站"></a>配置伪装网站</h3><p><strong>选泽一：伪装成一个非常卡哇伊的好玩的网站，类似下面这样</strong></p>
 <p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/002.gif?raw=true" alt="动图"></p>
 <p>依次执行下面这2条命令即可</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;HFIProgramming&#x2F;mikutap.git</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp -r &#x2F;var&#x2F;www&#x2F;mikutap&#x2F;. &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install git -y</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;HFIProgramming&#x2F;mikutap.git &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+
 <p>如果您选择了这个后不满意，又想安装下面那个私有云盘需要先执行下面两条命令再去执行私有云盘的脚本：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
