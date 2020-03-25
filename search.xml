@@ -621,6 +621,10 @@
 <p>绿色免安装版本：(<a href="http://winscp.net/download/WinSCP-5.15.9-Portable.zip" target="_blank" rel="noopener">http://winscp.net/download/WinSCP-5.15.9-Portable.zip</a>)</p>
 <h4 id="在vps上修改配置"><a href="#在vps上修改配置" class="headerlink" title="在vps上修改配置"></a>在vps上修改配置</h4><p>执行一键脚本设置root用户登录密码：<br>这个脚本也是jeannie本人整理的，如有问题请留言，enjoy😀</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O addpwd.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;addpwd.sh</span><br><span class="line">chmod +x addpwd.sh</span><br><span class="line">.&#x2F;addpwd.sh 2&gt;&amp;1 | tee addpwd.log</span><br></pre></td></tr></table></figure>
+<p>如果报“-bash:wget command not found”，如果是ubuntu或debian系统执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install wget</span><br></pre></td></tr></table></figure>
+<p>如果是centos系统，执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
 
 
 <h4 id="用winscp连接vps"><a href="#用winscp连接vps" class="headerlink" title="用winscp连接vps"></a>用winscp连接vps</h4><p>打开WINCSCP，协议选择：SCP，ip输入vps的IP地址即可，用户名root,密码为刚刚设置的密码。</p>
