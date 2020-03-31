@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ss+caddy+tls</title>
+    <url>/2020/04/05/ss%E9%9D%A2%E6%9D%BF/</url>
+    <content><![CDATA[<h1 id="安装ss管理面板"><a href="#安装ss管理面板" class="headerlink" title="安装ss管理面板"></a>安装ss管理面板</h1><p>此脚本只在centos7系统测试</p>
+<p>切换到root用户：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+<p>centos默认没有安装wget工具，执行命令安装：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+<p>一键安装ss面板管理工具：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O ssmgr.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;ssmgr.sh</span><br><span class="line">chmod +x ssmgr.sh</span><br><span class="line">.&#x2F;ssmgr.sh 2&gt;&amp;1 | tee ssmgr.log</span><br></pre></td></tr></table></figure>
+<p>浏览器输入ip:8080即可访问</p>
+<h1 id="伪装"><a href="#伪装" class="headerlink" title="伪装"></a>伪装</h1><p><strong>配合 caddy 使用加tls证书，伪装网站</strong><br>1.将域名解析到vps，ping域名是否成功<br>2.安装caddy,先执行exit退出root用户，如果一次不行，就执行多次，直到终端命令行变成一个$符号</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;getcaddy.com | bash -s personal</span><br></pre></td></tr></table></figure>
+
+<p>3.sudo -i，切换到root用户，执行一键脚本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O caddy-ss-tls.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;caddy-ss-tls.sh</span><br><span class="line">chmod +x caddy-ss-tls.sh</span><br><span class="line">.&#x2F;caddy-ss-tls.sh 2&gt;&amp;1 | tee caddy-ss-tls.log</span><br></pre></td></tr></table></figure>
+<p>caddy 安装和配置成功<br>启动：supervisorctl start caddy<br>停止：supervisorctl stop caddy<br>重启：supervisorctl restart caddy<br>查看状态：supervisorctl status </p>
+]]></content>
+  </entry>
+  <entry>
     <title>国内外常用的域名注册商（持续更新中）</title>
     <url>/2020/03/19/%E5%9B%BD%E5%86%85%E5%A4%96%E5%B8%B8%E7%94%A8%E7%9A%84%E8%91%97%E5%90%8D%E6%B3%A8%E5%86%8C%E5%95%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E7%A7%8D%EF%BC%89/</url>
     <content><![CDATA[<h1 id="中国域名注册商（需要实名认证和备案）："><a href="#中国域名注册商（需要实名认证和备案）：" class="headerlink" title="中国域名注册商（需要实名认证和备案）："></a>中国域名注册商（需要实名认证和备案）：</h1><table>
@@ -619,12 +638,13 @@
     <url>/2020/02/14/%E4%BD%BF%E7%94%A8WINSCP%E8%BF%9E%E6%8E%A5VPS%E6%95%99%E7%A8%8B--%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<h4 id="winscp工具下载"><a href="#winscp工具下载" class="headerlink" title="winscp工具下载"></a>winscp工具下载</h4><p> 在谷歌云上创建好了vps后如何用第三方工具进行连接，从而实现文件的修改、上传和下载呢？这就用到了第三方工具WINSCP，下面给出下载地址：</p>
 <p>绿色免安装版本：(<a href="http://winscp.net/download/WinSCP-5.15.9-Portable.zip" target="_blank" rel="noopener">http://winscp.net/download/WinSCP-5.15.9-Portable.zip</a>)</p>
-<h4 id="在vps上修改配置"><a href="#在vps上修改配置" class="headerlink" title="在vps上修改配置"></a>在vps上修改配置</h4><p>执行一键脚本设置root用户登录密码：<br>这个脚本也是jeannie本人整理的，如有问题请留言，enjoy😀</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O addpwd.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;addpwd.sh</span><br><span class="line">chmod +x addpwd.sh</span><br><span class="line">.&#x2F;addpwd.sh 2&gt;&amp;1 | tee addpwd.log</span><br></pre></td></tr></table></figure>
-<p>如果报“-bash:wget command not found”，如果是ubuntu或debian系统执行：</p>
+<h4 id="在vps上修改配置"><a href="#在vps上修改配置" class="headerlink" title="在vps上修改配置"></a>在vps上修改配置</h4><p>ubuntu或debian系统先执行：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install wget</span><br></pre></td></tr></table></figure>
-<p>如果是centos系统，执行：</p>
+<p>centos系统先执行：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+<p>再执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget --no-check-certificate -O addpwd.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;addpwd.sh</span><br><span class="line">chmod +x addpwd.sh</span><br><span class="line">.&#x2F;addpwd.sh 2&gt;&amp;1 | tee addpwd.log</span><br></pre></td></tr></table></figure>
+
 
 
 <h4 id="用winscp连接vps"><a href="#用winscp连接vps" class="headerlink" title="用winscp连接vps"></a>用winscp连接vps</h4><p>打开WINCSCP，协议选择：SCP，ip输入vps的IP地址即可，用户名root,密码为刚刚设置的密码。</p>
