@@ -356,9 +356,7 @@
 <p>bbr四合一脚本（只是锦上添花，不安装也可以出国）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate &quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;chiakge&#x2F;Linux-NetSpeed&#x2F;master&#x2F;tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; .&#x2F;tcp.sh</span><br></pre></td></tr></table></figure>
 
-
-
-
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>别忘了创建防火墙规则，放行80、443、1234、5678这四个端口的出入站，不然，额……你不让人家过，人家怎么帮你转发流量，自然也上不了网喽！</p>
 ]]></content>
   </entry>
   <entry>
