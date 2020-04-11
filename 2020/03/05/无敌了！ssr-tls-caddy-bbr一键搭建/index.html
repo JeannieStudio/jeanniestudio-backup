@@ -28,7 +28,7 @@
 <meta property="og:description" content="速度与安全并存，一键搭建超级简单">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-05T10:42:30.000Z">
-<meta property="article:modified_time" content="2020-04-04T12:47:28.946Z">
+<meta property="article:modified_time" content="2020-04-11T08:55:47.508Z">
 <meta property="article:author" content="Jeannie">
 <meta name="twitter:card" content="summary">
 
@@ -204,7 +204,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-04 20:47:28" itemprop="dateModified" datetime="2020-04-04T20:47:28+08:00">2020-04-04</time>
+                <time title="修改时间：2020-04-11 16:55:47" itemprop="dateModified" datetime="2020-04-11T16:55:47+08:00">2020-04-11</time>
               </span>
 
           
@@ -250,21 +250,17 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>由于很多萌新对配置caddy不是特别熟悉，所以整理了一个ssr+tls+acddy+bbr+filebrowser一键搭建的脚本，供大家参考。</strong></p>
-<h3 id="支持平台："><a href="#支持平台：" class="headerlink" title="支持平台："></a>支持平台：</h3><p><strong>Centos  7<br>Ubuntu 18.04、19.10<br>Debian  9、10</strong></p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>由于很多萌新对配置caddy不是特别熟悉，所以整理了一个ssr+tls+acddy+bbr+网站网站的一键搭建的脚本，供大家参考。</strong></p>
+<h3 id="支持平台："><a href="#支持平台：" class="headerlink" title="支持平台："></a>支持平台：</h3><p><strong>Debian  9、10—测完<br>Ubuntu 18.04、19.10<br>Centos  7</strong></p>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p><strong>1.一个域名，推荐namesio(便宜，续费费用不会增加)<br>2.购买vps，本例以谷歌云为例</strong></p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>切换到root用户：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
-<p>Centos先执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
-<p>Debian或Ubuntu先执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install wget</span><br></pre></td></tr></table></figure>
 <p>再执行一键搭建脚本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O ssr-caddy-tls.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;ssr-caddy-tls.sh</span><br><span class="line">chmod +x ssr-caddy-tls.sh</span><br><span class="line">.&#x2F;ssr-caddy-tls.sh 2&gt;&amp;1 | tee ssr-caddy-tls.log</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;ssr-caddy-tls.sh)&quot;</span><br></pre></td></tr></table></figure>
 <p>安装bbr（只是锦上添花，不安装也可以出国）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate &quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;chiakge&#x2F;Linux-NetSpeed&#x2F;master&#x2F;tcp.sh&quot;</span><br><span class="line">chmod +x tcp.sh</span><br><span class="line">.&#x2F;tcp.sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>别忘了创建防火墙规则，放行80、443、1234、5678这四个端口的出入站，不然，额……你不让人家过，人家怎么帮你转发流量，自然也上不了网喽！</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>别忘了创建防火墙规则，放行80、443这四个端口的出入站，不然，额……你不让人家过，人家怎么帮你转发流量，自然也上不了网喽！</p>
+<p><strong>视频链接：</strong><br><strong>订阅本频道：<a href="https://bit.ly/2X042ea" target="_blank" rel="noopener">https://bit.ly/2X042ea</a></strong></p>
 
     </div>
 
@@ -384,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持平台："><span class="nav-number">2.</span> <span class="nav-text">支持平台：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">4.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持平台："><span class="nav-number">2.</span> <span class="nav-text">支持平台：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">4.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">5.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
