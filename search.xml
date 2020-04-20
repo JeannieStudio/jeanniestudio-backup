@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Jeannie出品-六合一脚本</title>
+    <url>/2020/04/17/Jeannie%E5%87%BA%E5%93%81-%E5%85%AD%E5%90%88%E4%B8%80%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>今天给大家分享六合一一键脚本供大家参考</strong></p>
+<h3 id="支持平台："><a href="#支持平台：" class="headerlink" title="支持平台："></a>支持平台：</h3><p>*<em>Debian  9、10<br>Ubuntu 16.04  、18.04、19.10<br>Centos  7<br>*</em></p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p><strong>1.一个域名，推荐namesio(便宜，续费费用不会增加)<br>2.购买vps，以谷歌云为例</strong></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>切换到root用户：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+
+<p>执行一键搭建脚本：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;all-install.sh)&quot;</span><br></pre></td></tr></table></figure>
+<p>安装bbr（只是锦上添花，不安装也可以出国）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate &quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;chiakge&#x2F;Linux-NetSpeed&#x2F;master&#x2F;tcp.sh&quot;</span><br><span class="line">chmod +x tcp.sh</span><br><span class="line">.&#x2F;tcp.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>别忘了创建防火墙规则，放行80、443、10000这三个端口的出入站，不然，额……你不让人家过，人家怎么帮你转发流量，自然也上不了网喽！</p>
+<p><strong>视频链接：<a href="https://youtu.be/8PNXSmvqPpI" target="_blank" rel="noopener">https://youtu.be/8PNXSmvqPpI</a></strong><br><strong>订阅本频道：<a href="https://bit.ly/2X042ea" target="_blank" rel="noopener">https://bit.ly/2X042ea</a></strong></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Jeannie出品-v2ray+tls+caddy+伪装网站一键脚本</title>
     <url>/2020/04/13/Jeannie%E5%87%BA%E5%93%81-v2ray+tls+caddy+%E4%BC%AA%E8%A3%85%E7%BD%91%E7%AB%99%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>不想手工搭建v2ray+ws+tls+caddy+伪装网站的小伙伴们，现整理了一个一键脚本供大家参考</strong></p>
