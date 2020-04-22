@@ -8,7 +8,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
 
 <p>执行一键搭建脚本：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;github.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;blob&#x2F;master&#x2F;bug.sh)&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;bug.sh)&quot;</span><br></pre></td></tr></table></figure>
 
 <p><strong>视频链接：</strong><br><strong>订阅本频道：<a href="https://bit.ly/2X042ea" target="_blank" rel="noopener">https://bit.ly/2X042ea</a></strong></p>
 ]]></content>
