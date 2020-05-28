@@ -20,23 +20,24 @@
     var CONFIG = {"hostname":"jeanniestudio.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="看完本文再不理解这俩内核的关系，来找我……">
+  <meta name="description" content="一键搭建caddy+http.forwardproxy +filebrowser，安全又稳定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何查看linux系统内核版本和发型版本？">
-<meta property="og:url" content="https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/index.html">
+<meta property="og:title" content="caddy+http.forwardproxy +filebrowser+bbr-一键搭建">
+<meta property="og:url" content="https://jeanniestudio.github.io/2020/03/14/caddy+http.forwardproxy%20+filebrowser+bbr-%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="Jeannie Studio">
-<meta property="og:description" content="看完本文再不理解这俩内核的关系，来找我……">
+<meta property="og:description" content="一键搭建caddy+http.forwardproxy +filebrowser，安全又稳定">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/%E5%8F%91%E5%8A%A8%E6%9C%BA%E6%AF%94%E5%96%BB.jpg?raw=true">
-<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/linux%E6%AF%94%E5%96%BB.jpg?raw=true">
-<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true">
-<meta property="article:published_time" content="2020-02-18T18:35:10.000Z">
-<meta property="article:modified_time" content="2020-03-04T02:31:23.463Z">
+<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E9%85%8D%E7%BD%AE0000000.jpg?raw=true">
+<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/ios0001.jpg?raw=true">
+<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/002.gif?raw=true">
+<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/03.gif?raw=true">
+<meta property="article:published_time" content="2020-03-14T07:41:11.000Z">
+<meta property="article:modified_time" content="2020-03-15T08:02:16.579Z">
 <meta property="article:author" content="Jeannie">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/%E5%8F%91%E5%8A%A8%E6%9C%BA%E6%AF%94%E5%96%BB.jpg?raw=true">
+<meta name="twitter:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E9%85%8D%E7%BD%AE0000000.jpg?raw=true">
 
-<link rel="canonical" href="https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/">
+<link rel="canonical" href="https://jeanniestudio.github.io/2020/03/14/caddy+http.forwardproxy%20+filebrowser+bbr-%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/">
 
 
 <script id="page-configurations">
@@ -48,7 +49,7 @@
   };
 </script>
 
-  <title>如何查看linux系统内核版本和发型版本？ | Jeannie Studio</title>
+  <title>caddy+http.forwardproxy +filebrowser+bbr-一键搭建 | Jeannie Studio</title>
   
 
 
@@ -178,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://jeanniestudio.github.io/2020/03/14/caddy+http.forwardproxy%20+filebrowser+bbr-%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -191,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何查看linux系统内核版本和发型版本？
+          caddy+http.forwardproxy +filebrowser+bbr-一键搭建
         </h1>
 
         <div class="post-meta">
@@ -201,14 +202,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-02-19 02:35:10" itemprop="dateCreated datePublished" datetime="2020-02-19T02:35:10+08:00">2020-02-19</time>
+              <time title="创建时间：2020-03-14 15:41:11" itemprop="dateCreated datePublished" datetime="2020-03-14T15:41:11+08:00">2020-03-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 10:31:23" itemprop="dateModified" datetime="2020-03-04T10:31:23+08:00">2020-03-04</time>
+                <time title="修改时间：2020-03-15 16:02:16" itemprop="dateModified" datetime="2020-03-15T16:02:16+08:00">2020-03-15</time>
               </span>
 
           
@@ -227,13 +228,13 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/19/如何查看linux系统内核版本和发型版本？/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/03/14/caddy+http.forwardproxy%20+filebrowser+bbr-%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/14/caddy+http.forwardproxy +filebrowser+bbr-一键搭建/" itemprop="commentCount"></span>
     </a>
   </span>
   
   
-            <div class="post-description">看完本文再不理解这俩内核的关系，来找我……</div>
+            <div class="post-description">一键搭建caddy+http.forwardproxy +filebrowser，安全又稳定</div>
 
         </div>
       </header>
@@ -254,33 +255,32 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>linux内核是系统的心脏，可以将内核比喻成：汽车的发动。</strong></p>
-<p><strong>可以将发型版本比喻成：发动机+轮胎+外壳+……组成的不同品牌的汽车。</strong></p>
-<p><strong>比如下图，大众CFE发动机+其他零部件可以组装成速腾、高尔夫、朗逸、宝来等汽车。</strong></p>
-<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/%E5%8F%91%E5%8A%A8%E6%9C%BA%E6%AF%94%E5%96%BB.jpg?raw=true" alt="如图"></p>
-<p><strong>同样，linux内核+其他应用程序组成了Redhat、Debian、CentOS、ubuntu。</strong></p>
-<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/linux%E6%AF%94%E5%96%BB.jpg?raw=true" alt="如图"></p>
-<h2 id="查看Linux内核版本命令"><a href="#查看Linux内核版本命令" class="headerlink" title="查看Linux内核版本命令"></a>查看Linux内核版本命令</h2><p><strong>命令1：</strong>  <code>cat /proc/version</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux version 4.14.129-bbrplus (root@vultr.guest) (gcc version 6.3.0 20170516 (Debian 6.3.0-18+deb9u1)) #1 SMP Mon Jun 24 16:51:05 UTC 2019</span><br></pre></td></tr></table></figure>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>大家是否知道caddy有一款插件叫做：http.forwardproxy，只要我们安装上这二者，然后稍加配置，就可以愉快的在世界网络中穿梭了，是不是很神奇?Let’s get started.</strong></p>
+<h3 id="安装并配置"><a href="#安装并配置" class="headerlink" title="安装并配置"></a>安装并配置</h3><h4 id="安装caddy-http-forwardproxy"><a href="#安装caddy-http-forwardproxy" class="headerlink" title="安装caddy+http.forwardproxy"></a>安装caddy+http.forwardproxy</h4><p>下面直接给出了一键搭建脚本，想了解原理和手工搭建过程的可以参考这个：<a href="https://jeanniestudio.top/2020/03/14/caddy+http.forwardproxy%20+filebrowser--%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" target="_blank" rel="noopener">链接</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O caddy-forwardproxy.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;caddy-forwardproxy.sh</span><br><span class="line">chmod +x caddy-forwardproxy.sh</span><br><span class="line">.&#x2F;caddy-forwardproxy.sh 2&gt;&amp;1 | tee caddy-forwardproxy.log</span><br></pre></td></tr></table></figure>
+<p>安装bbr四合一脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate &quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;chiakge&#x2F;Linux-NetSpeed&#x2F;master&#x2F;tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; .&#x2F;tcp.sh</span><br></pre></td></tr></table></figure>
 
-<p><strong>命令2：</strong>  <code>uname -a</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux trojan001 4.9.0-12-amd64 #1 SMP Debian 4.9.210-1 (2020-01-20) x86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
+<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p><strong>windows端：</strong><br>我用的chrome浏览器，下载Proxy SwitchyOmega插件，安装如下填写：</p>
+<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E9%85%8D%E7%BD%AE0000000.jpg?raw=true" alt="配置"><br>点击左下侧的“应用选项”就可以出国旅游了。</p>
+<p><strong>ios端</strong><br>用小火箭即可，地址填域名，用户名和密码是Caddyfile里填的用户名和密码：<br><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/ios0001.jpg?raw=true" alt="ios"></p>
+<hr>
+<p><strong>至此，您可以再世界网络穿梭了。</strong></p>
+<hr>
+<h3 id="配置伪装网站"><a href="#配置伪装网站" class="headerlink" title="配置伪装网站"></a>配置伪装网站</h3><p><strong>选泽一：伪装成一个非常卡哇伊的好玩的网站，类似下面这样</strong></p>
+<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/002.gif?raw=true" alt="动图"></p>
+<p>依次执行下面这2条命令即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install git -y</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;HFIProgramming&#x2F;mikutap.git &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
 
-<p><strong>命令3：</strong>  <code>uname -r</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.9.0-12-amd64</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="查看Linux发型版本信息"><a href="#查看Linux发型版本信息" class="headerlink" title="查看Linux发型版本信息"></a>查看Linux发型版本信息</h2><p><strong>命令1：</strong> <code>cat /etc/issue</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debian GNU&#x2F;Linux 9 \n \l</span><br></pre></td></tr></table></figure>
-
-<p><strong>命令2：</strong><code>cat /etc/lsb-release</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Distributor ID: Debian</span><br><span class="line">Description:    Debian GNU&#x2F;Linux 9.12 (stretch)</span><br><span class="line">Release:        9.12</span><br><span class="line">Codename:       stretch</span><br></pre></td></tr></table></figure>
-<h2 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h2><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
+<p>如果您选择了这个后不满意，又想安装下面那个私有云盘需要先执行下面两条命令再去执行私有云盘的脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;var&#x2F;www</span><br></pre></td></tr></table></figure>
+<p><strong>选择二：安装filebrowser伪装成一个个人在线私有云盘</strong><br><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/03.gif?raw=true" alt=""><br>上期给小伙伴演示了配置一个静态网站进行伪装，有朋友说比较浪费，好吧，那么就配置一个个人私有网盘，当个U盘使用吧，放上去的东西千万要本地备份，不然ip被封了文件找不回来了，哭都找不着地方哦😂</p>
+<p>下面直接给出一键脚本，想了解如何手工安装可以参考这里：<a href="https://jeanniestudio.top/2020/03/14/caddy+http.forwardproxy%20+filebrowser--%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" target="_blank" rel="noopener">链接</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O filebrowser.sh https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;JeannieStudio&#x2F;jeannie&#x2F;master&#x2F;filebrowser.sh</span><br><span class="line">chmod +x filebrowser.sh</span><br><span class="line">.&#x2F;filebrowser.sh 2&gt;&amp;1 | tee filebrowser.log</span><br></pre></td></tr></table></figure>
+<p>启动成功后在浏览器输入您的域名就可以看到上面那个个人网盘登录界面了。大功告成了！</p>
 
     </div>
 
@@ -316,12 +316,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/15/%E6%9C%80%E5%9D%9A%E6%8C%BA%E5%87%BA%E5%9B%BD%E6%96%B9%E5%BC%8F%EF%BC%9Av2ray+CDN+Ngnix+websocket/" rel="prev" title="最坚挺的出国方式：v2ray+CDN+Ngnix+Websocket">
-      <i class="fa fa-chevron-left"></i> 最坚挺的出国方式：v2ray+CDN+Ngnix+Websocket
+    <a href="/2020/03/14/caddy+http.forwardproxy%20+filebrowser--%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" rel="prev" title="caddy+http.forwardproxy +filebrowser--手工搭建过程">
+      <i class="fa fa-chevron-left"></i> caddy+http.forwardproxy +filebrowser--手工搭建过程
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/20/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BATrojan/" rel="next" title="一键搭建Trojan">
-      一键搭建Trojan <i class="fa fa-chevron-right"></i>
+    <a href="/2020/03/19/%E5%9B%BD%E5%86%85%E5%A4%96%E5%B8%B8%E7%94%A8%E7%9A%84%E8%91%97%E5%90%8D%E6%B3%A8%E5%86%8C%E5%95%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E7%A7%8D%EF%BC%89/" rel="next" title="国内外常用的域名注册商（持续更新中）">
+      国内外常用的域名注册商（持续更新中） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -400,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看Linux内核版本命令"><span class="nav-number">2.</span> <span class="nav-text">查看Linux内核版本命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看Linux发型版本信息"><span class="nav-number">3.</span> <span class="nav-text">查看Linux发型版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捐助本站"><span class="nav-number">4.</span> <span class="nav-text">捐助本站</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装并配置"><span class="nav-number">2.</span> <span class="nav-text">安装并配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装caddy-http-forwardproxy"><span class="nav-number">2.1.</span> <span class="nav-text">安装caddy+http.forwardproxy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端配置"><span class="nav-number">3.</span> <span class="nav-text">客户端配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置伪装网站"><span class="nav-number">4.</span> <span class="nav-text">配置伪装网站</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -613,9 +613,9 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/";
-    this.page.identifier = "2020/02/19/如何查看linux系统内核版本和发型版本？/";
-    this.page.title = "如何查看linux系统内核版本和发型版本？";
+    this.page.url = "https://jeanniestudio.github.io/2020/03/14/caddy+http.forwardproxy%20+filebrowser+bbr-%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA/";
+    this.page.identifier = "2020/03/14/caddy+http.forwardproxy +filebrowser+bbr-一键搭建/";
+    this.page.title = "caddy+http.forwardproxy +filebrowser+bbr-一键搭建";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

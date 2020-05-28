@@ -20,23 +20,15 @@
     var CONFIG = {"hostname":"jeanniestudio.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="看完本文再不理解这俩内核的关系，来找我……">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何查看linux系统内核版本和发型版本？">
-<meta property="og:url" content="https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Jeannie Studio">
+<meta property="og:url" content="https://jeanniestudio.github.io/archives/2019/index.html">
 <meta property="og:site_name" content="Jeannie Studio">
-<meta property="og:description" content="看完本文再不理解这俩内核的关系，来找我……">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/%E5%8F%91%E5%8A%A8%E6%9C%BA%E6%AF%94%E5%96%BB.jpg?raw=true">
-<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/linux%E6%AF%94%E5%96%BB.jpg?raw=true">
-<meta property="og:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true">
-<meta property="article:published_time" content="2020-02-18T18:35:10.000Z">
-<meta property="article:modified_time" content="2020-03-04T02:31:23.463Z">
 <meta property="article:author" content="Jeannie">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/%E5%8F%91%E5%8A%A8%E6%9C%BA%E6%AF%94%E5%96%BB.jpg?raw=true">
 
-<link rel="canonical" href="https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/">
+<link rel="canonical" href="https://jeanniestudio.github.io/archives/2019/">
 
 
 <script id="page-configurations">
@@ -44,11 +36,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true
+    isPost : false
   };
 </script>
 
-  <title>如何查看linux系统内核版本和发型版本？ | Jeannie Studio</title>
+  <title>归档 | Jeannie Studio</title>
   
 
 
@@ -173,187 +165,82 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jeannie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jeannie Studio">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          如何查看linux系统内核版本和发型版本？
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 02:35:10" itemprop="dateCreated datePublished" datetime="2020-02-19T02:35:10+08:00">2020-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 10:31:23" itemprop="dateModified" datetime="2020-03-04T10:31:23+08:00">2020-03-04</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
   
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/19/如何查看linux系统内核版本和发型版本？/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <div class="post-description">看完本文再不理解这俩内核的关系，来找我……</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">嗯..! 目前共计 20 篇日志。 继续努力。</span>
+      </div>
 
       
-	  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <div class="collection-year">
+      <h1 class="collection-header">2019</h1>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2019-12-30T06:57:37+08:00"
+              content="2019-12-30">
+          12-30
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2019/12/30/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BAssr+bbr/" itemprop="url">
+            <span itemprop="name">一键搭建ssr+bbr</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2019-12-27T17:23:44+08:00"
+              content="2019-12-27">
+          12-27
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2019/12/27/IntelliJ%20IDEA%20%E5%AE%89%E8%A3%85golang%20%E6%8F%92%E4%BB%B6/" itemprop="url">
+            <span itemprop="name">IntelliJ IDEA 安装golang 插件</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
+     style="display:block"
      data-ad-format="fluid"
+     data-ad-layout-key="-gw-3+1f-3d+2z"
      data-ad-client="ca-pub-6979574394927157"
-     data-ad-slot="7001011447"></ins>
+     data-ad-slot="9399658662"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>linux内核是系统的心脏，可以将内核比喻成：汽车的发动。</strong></p>
-<p><strong>可以将发型版本比喻成：发动机+轮胎+外壳+……组成的不同品牌的汽车。</strong></p>
-<p><strong>比如下图，大众CFE发动机+其他零部件可以组装成速腾、高尔夫、朗逸、宝来等汽车。</strong></p>
-<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/%E5%8F%91%E5%8A%A8%E6%9C%BA%E6%AF%94%E5%96%BB.jpg?raw=true" alt="如图"></p>
-<p><strong>同样，linux内核+其他应用程序组成了Redhat、Debian、CentOS、ubuntu。</strong></p>
-<p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E8%B0%B7%E6%AD%8C%E4%BA%91/linux%E6%AF%94%E5%96%BB.jpg?raw=true" alt="如图"></p>
-<h2 id="查看Linux内核版本命令"><a href="#查看Linux内核版本命令" class="headerlink" title="查看Linux内核版本命令"></a>查看Linux内核版本命令</h2><p><strong>命令1：</strong>  <code>cat /proc/version</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux version 4.14.129-bbrplus (root@vultr.guest) (gcc version 6.3.0 20170516 (Debian 6.3.0-18+deb9u1)) #1 SMP Mon Jun 24 16:51:05 UTC 2019</span><br></pre></td></tr></table></figure>
-
-<p><strong>命令2：</strong>  <code>uname -a</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux trojan001 4.9.0-12-amd64 #1 SMP Debian 4.9.210-1 (2020-01-20) x86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>命令3：</strong>  <code>uname -r</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.9.0-12-amd64</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="查看Linux发型版本信息"><a href="#查看Linux发型版本信息" class="headerlink" title="查看Linux发型版本信息"></a>查看Linux发型版本信息</h2><p><strong>命令1：</strong> <code>cat /etc/issue</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debian GNU&#x2F;Linux 9 \n \l</span><br></pre></td></tr></table></figure>
-
-<p><strong>命令2：</strong><code>cat /etc/lsb-release</code></p>
-<p><strong>显示：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Distributor ID: Debian</span><br><span class="line">Description:    Debian GNU&#x2F;Linux 9.12 (stretch)</span><br><span class="line">Release:        9.12</span><br><span class="line">Codename:       stretch</span><br></pre></td></tr></table></figure>
-<h2 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h2><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
-
     </div>
-
-    
-    
-    
-        <div class="reward-container">
-  <div>如果觉得教程不错，不妨给个打赏，创作不易，各位的支持，能激发和鼓励我更大的热情。谢谢！</div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="Jeannie 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.jpg" alt="Jeannie 支付宝">
-        <p>支付宝</p>
-      </div>
-
   </div>
-</div>
-
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/02/15/%E6%9C%80%E5%9D%9A%E6%8C%BA%E5%87%BA%E5%9B%BD%E6%96%B9%E5%BC%8F%EF%BC%9Av2ray+CDN+Ngnix+websocket/" rel="prev" title="最坚挺的出国方式：v2ray+CDN+Ngnix+Websocket">
-      <i class="fa fa-chevron-left"></i> 最坚挺的出国方式：v2ray+CDN+Ngnix+Websocket
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/20/%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BATrojan/" rel="next" title="一键搭建Trojan">
-      一键搭建Trojan <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
   
   
   
 
-  </div>
+  
+
 
 
           </div>
           
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- 评论区广告 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6979574394927157"
-     data-ad-slot="1751472628"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    
-  <div class="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -400,7 +287,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看Linux内核版本命令"><span class="nav-number">2.</span> <span class="nav-text">查看Linux内核版本命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看Linux发型版本信息"><span class="nav-number">3.</span> <span class="nav-text">查看Linux发型版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捐助本站"><span class="nav-number">4.</span> <span class="nav-text">捐助本站</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -610,26 +496,6 @@ window.addEventListener('pjax:success', () => {
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
-</script>
-<script>
-  var disqus_config = function() {
-    this.page.url = "https://jeanniestudio.github.io/2020/02/19/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Blinux%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%92%8C%E5%8F%91%E5%9E%8B%E7%89%88%E6%9C%AC%EF%BC%9F/";
-    this.page.identifier = "2020/02/19/如何查看linux系统内核版本和发型版本？/";
-    this.page.title = "如何查看linux系统内核版本和发型版本？";
-    };
-  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: disqus_config
-      });
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://jeanniestudio.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', '' + +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  });
 </script>
 
     </div>
