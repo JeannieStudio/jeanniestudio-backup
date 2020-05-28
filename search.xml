@@ -736,7 +736,7 @@
   <entry>
     <title>使用XFTP连接VPS教程--一键脚本</title>
     <url>/2020/02/14/%E4%BD%BF%E7%94%A8WINSCP%E8%BF%9E%E6%8E%A5VPS%E6%95%99%E7%A8%8B--%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h4 id="winscp工具下载"><a href="#winscp工具下载" class="headerlink" title="winscp工具下载"></a>winscp工具下载</h4><p> 在谷歌云上创建好了vps后如何用第三方工具进行连接，从而实现文件的修改、上传和下载呢？这就用到了第三方工具XFTP，下面给出下载地址：<br>家庭/学校免费版本：(<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener">https://www.netsarang.com/zh/free-for-home-school/</a>)</p>
+    <content><![CDATA[<h4 id="XFTP工具下载"><a href="#XFTP工具下载" class="headerlink" title="XFTP工具下载"></a>XFTP工具下载</h4><p> 在谷歌云上创建好了vps后如何用第三方工具进行连接，从而实现文件的修改、上传和下载呢？这就用到了第三方工具XFTP，下面给出下载地址：<br>家庭/学校免费版本：(<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener">https://www.netsarang.com/zh/free-for-home-school/</a>)</p>
 <h4 id="在vps上修改配置"><a href="#在vps上修改配置" class="headerlink" title="在vps上修改配置"></a>在vps上修改配置</h4><p>先切换到root执行：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
 
