@@ -4,6 +4,8 @@
     <title>手动搭建Trojan</title>
     <url>/2020/07/17/%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BAtrojan-go/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>很多小伙伴在使用一键脚本搭建trojan-go实现科学上网的时候，偶尔会出现失败的情况，不妨试试手动搭建，花几分钟而已，100%成功，何乐而不为呢?</strong></p>
+<iframe height=498 width=510 src='https://youtu.be/kJuhXhi-xkU' frameborder=0 'allowfullscreen'></iframe>
+
 <h3 id="trojian和trojan-go的区别"><a href="#trojian和trojan-go的区别" class="headerlink" title="trojian和trojan-go的区别"></a>trojian和trojan-go的区别</h3><p>trojan-go:使用Go实现的完整Trojan代理，与Trojan协议以及Trojan版本的配置文件格式兼容。安全，高效，轻巧，易用。<br>但是，trojan-go具有以下2个特性是trojan不具有的：<br>1.支持使用多路复用提升并发性能<br>2.支持CDN流量中转(基于WebSocket over TLS/SSL)。</p>
 <hr>
 <h3 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h3><p>1.一个vps，我使用谷歌云演示<br>2.一个域名（不会申请域名的小伙伴可以看这个视频：）,域名和vps的ip地址关联成功</p>
@@ -31,7 +33,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -nc --no-check-certificate https:&#x2F;&#x2F;www.openssl.org&#x2F;source&#x2F;openssl-1.1.1g.tar.gz -P &#x2F;usr&#x2F;local&#x2F;src</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tar -zxvf  &#x2F;usr&#x2F;local&#x2F;src&#x2F;openssl-1.1.1g.tar.gz  -C &#x2F;usr&#x2F;local&#x2F;src</span><br></pre></td></tr></table></figure>
 <h5 id="2-其他依赖"><a href="#2-其他依赖" class="headerlink" title="2.其他依赖"></a>2.其他依赖</h5><p>debian和ubuntu执行下面语句：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt  -y install build-essential libpcre3 libpcre3-dev zlib1g-dev git  dbus</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt  -y install build-essential libpcre3 libpcre3-dev zlib1g-dev git  dbus manpages-dev</span><br></pre></td></tr></table></figure>
 <p>centos执行：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install pcre pcre-devel zlib-devel epel-release</span><br></pre></td></tr></table></figure>
