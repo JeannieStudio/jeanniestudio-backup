@@ -4,6 +4,8 @@
     <title>clash小猫咪的安装和使用</title>
     <url>/2020/07/31/clash%E5%B0%8F%E7%8C%AB%E5%92%AA%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="clash简介"><a href="#clash简介" class="headerlink" title="clash简介"></a>clash简介</h2><p><strong><em>clash(又称小猫咪)，是一款客户端代理软件，大家都应该用过windows客户端代理软件shadowsocks、v2rayN、Trojan-Qt5等，clash就和这些软件的功能类似，但又不完全一样。</em></strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wdzI_3xbhxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 <h3 id="1-如下图为ss的客户端："><a href="#1-如下图为ss的客户端：" class="headerlink" title="1.如下图为ss的客户端："></a>1.如下图为ss的客户端：</h3><p><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
 <p><img src="https://raw.githubusercontent.com/JeannieStudio/jeanniestudio.images/master/img/ss.png" alt=""></p>
 <h3 id="2-如下图为v2rayN的客户端："><a href="#2-如下图为v2rayN的客户端：" class="headerlink" title="2.如下图为v2rayN的客户端："></a>2.如下图为v2rayN的客户端：</h3><p><a href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">https://github.com/2dust/v2rayN/releases</a><br><img src="https://raw.githubusercontent.com/JeannieStudio/jeanniestudio.images/master/img/v2rayN.jpg" alt=""></p>
