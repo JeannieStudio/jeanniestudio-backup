@@ -19,7 +19,7 @@
 ]]></content>
   </entry>
   <entry>
-    <title>手动搭建Trojan</title>
+    <title>手动搭建Trojan-go+Nginx+Tls</title>
     <url>/2020/07/17/%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BATrojan-go+Nginx+Tls/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>很多小伙伴在使用一键脚本搭建trojan-go实现科学上网的时候，偶尔会出现失败的情况，不妨试试手动搭建，花几分钟而已，100%成功，何乐而不为呢?</strong></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CqoSD0M1HG8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -170,7 +170,10 @@
     <title>Jeannie出品-针对v2ray core的重大安全漏洞，进行6合1脚本的更新</title>
     <url>/2020/06/01/Jeannie%E5%87%BA%E5%93%81-%E9%92%88%E5%AF%B9v2ray%20core%E7%9A%84%E9%87%8D%E5%A4%A7%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%EF%BC%8C%E8%BF%9B%E8%A1%8C6%E5%90%881%E8%84%9A%E6%9C%AC%E7%9A%84%E6%9B%B4%E6%96%B0/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>针对v2ray在v4.23.2 前固定 TLS 密码套件潜在的特征识别风险，对6合1脚本做相应更新</strong></p>
-<h3 id="情况1"><a href="#情况1" class="headerlink" title="情况1"></a>情况1</h3><p><strong>如果已经安装了6合一脚本中的3或者4，请执行下面两句进行v2ray-core的更新：</strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cNSq5RdVf28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+### 情况1
+**如果已经安装了6合一脚本中的3或者4，请执行下面两句进行v2ray-core的更新：**
+
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -L -s https:&#x2F;&#x2F;install.direct&#x2F;go.sh)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service v2ray restart</span><br></pre></td></tr></table></figure>
