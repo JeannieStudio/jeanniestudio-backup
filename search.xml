@@ -20,7 +20,7 @@
   </entry>
   <entry>
     <title>手动搭建Trojan</title>
-    <url>/2020/07/17/%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BAtrojan-go/</url>
+    <url>/2020/07/17/%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BATrojan-go+Nginx+Tls/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>很多小伙伴在使用一键脚本搭建trojan-go实现科学上网的时候，偶尔会出现失败的情况，不妨试试手动搭建，花几分钟而已，100%成功，何乐而不为呢?</strong></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CqoSD0M1HG8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
