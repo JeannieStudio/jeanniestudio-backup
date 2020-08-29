@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>手动搭建vless+tcp+tls</title>
+    <url>/2020/08/24/%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BAvless+tcp+tls/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>v2ray的官网转移到了<a href="https://www.v2fly.org/" target="_blank" rel="noopener">https://www.v2fly.org/</a>，而且添加了新的传输协议：vless,VLESS 是一个无状态的轻量传输协议，它分为入站和出站两部分，可以作为 V2Ray 客户端和服务器之间的桥梁。</strong></p>
+<h3 id="vmess和vless的区别"><a href="#vmess和vless的区别" class="headerlink" title="vmess和vless的区别"></a>vmess和vless的区别</h3><p><strong>vless与VMess 不同，VLESS 不依赖于系统时间，认证方式同样为 UUID，但不需要 alterId</strong>。</p>
+<p><strong>官方附加说明：尽管 Websocket+TLS+Web 可能称得上是现阶段最好的方案，但绝对不是推荐新手一上来就尝试的方案，更不是 V2Ray 唯一的用法。同时，你应当了解，每个地区的网络状况不同 (主要指对不同协议的 QoS 程度)，你可以将所有配置都尝试一遍来寻找最适合自己的，尽量少问、最好不问“为什么我的 V2Ray 这么慢？”这样的问题。</strong></p>
+<h3 id="准备条件："><a href="#准备条件：" class="headerlink" title="准备条件："></a>准备条件：</h3><p>1.一个vps，我使用谷歌云演示<br>2.一个域名（不会申请域名的小伙伴可以看这个视频：）,域名和vps的ip地址关联成功</p>
+<h3 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h3><h4 id="一、安装acme-sh脚本"><a href="#一、安装acme-sh脚本" class="headerlink" title="一、安装acme.sh脚本"></a>一、安装acme.sh脚本</h4><h5 id="1-先切换到root"><a href="#1-先切换到root" class="headerlink" title="1.先切换到root"></a>1.先切换到root</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-安装依赖，debian或ubuntu执行："><a href="#2-安装依赖，debian或ubuntu执行：" class="headerlink" title="2.安装依赖，debian或ubuntu执行："></a>2.安装依赖，debian或ubuntu执行：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get -y install socat</span><br></pre></td></tr></table></figure>
+<p>centos执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum update &amp;&amp;  yum -y install socat</span><br></pre></td></tr></table></figure>
+<h5 id="3-安装acme-sh脚本："><a href="#3-安装acme-sh脚本：" class="headerlink" title="3.安装acme.sh脚本："></a>3.安装acme.sh脚本：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;get.acme.sh | sh</span><br></pre></td></tr></table></figure>
+<p><strong>出现：Install success!表示安装成功</strong></p>
+<h5 id="4-让环境变量生效，以后无论在哪个路径，直接使用acme-sh"><a href="#4-让环境变量生效，以后无论在哪个路径，直接使用acme-sh" class="headerlink" title="4.让环境变量生效，以后无论在哪个路径，直接使用acme.sh"></a>4.让环境变量生效，以后无论在哪个路径，直接使用acme.sh</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">source ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
+<h4 id="二、用acme-sh脚本申请证书"><a href="#二、用acme-sh脚本申请证书" class="headerlink" title="二、用acme.sh脚本申请证书"></a>二、用acme.sh脚本申请证书</h4><h5 id="1-开始签发证书-注意请将example-com替换成你的域名"><a href="#1-开始签发证书-注意请将example-com替换成你的域名" class="headerlink" title="1.开始签发证书,注意请将example.com替换成你的域名"></a>1.开始签发证书,注意请将example.com替换成你的域名</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">acme.sh --issue -d example.com --standalone -k ec-256 --force</span><br></pre></td></tr></table></figure>
+<p>出现下图说明你的证书签发成功<br><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/trojan-go-001.jpg?raw=true" alt=""></p>
+<h5 id="2-创建一个目录用于存放你的证书-注意请将example-com替换成你的域名"><a href="#2-创建一个目录用于存放你的证书-注意请将example-com替换成你的域名" class="headerlink" title="2.创建一个目录用于存放你的证书,注意请将example.com替换成你的域名"></a>2.创建一个目录用于存放你的证书,注意请将example.com替换成你的域名</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;data</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;data&#x2F;example.com</span><br></pre></td></tr></table></figure>
+<h4 id="三、复制-安装证书"><a href="#三、复制-安装证书" class="headerlink" title="三、复制/安装证书"></a>三、复制/安装证书</h4><p>注意请将example.com替换成你的域名 <strong>(共4处)</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">acme.sh --installcert -d example.com --fullchainpath &#x2F;data&#x2F;example.com&#x2F;fullchain.crt --keypath &#x2F;data&#x2F;example.com&#x2F;example.com.key --ecc --force</span><br></pre></td></tr></table></figure>
+<p><strong>至此，tls证书签发成功！！！</strong></p>
+<h4 id="四、证书更新"><a href="#四、证书更新" class="headerlink" title="四、证书更新"></a>四、证书更新</h4><p>关于从Letsencrypt申请到的证书，有效期为90天，脚本会每60天自动更新证书，你无须进行任何操作，今后可能会缩短这个时间，不过都是自动的，你不用关心。</p>
+<h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><h4 id="1-安装依赖包"><a href="#1-安装依赖包" class="headerlink" title="1.安装依赖包"></a>1.安装依赖包</h4><p><strong>下载/安装 openssl-1.1.1（使 nginx 支持TLS 1.3）</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;src</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -nc --no-check-certificate https:&#x2F;&#x2F;www.openssl.org&#x2F;source&#x2F;openssl-1.1.1g.tar.gz -P &#x2F;usr&#x2F;local&#x2F;src</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tar -zxvf  &#x2F;usr&#x2F;local&#x2F;src&#x2F;openssl-1.1.1g.tar.gz  -C &#x2F;usr&#x2F;local&#x2F;src</span><br></pre></td></tr></table></figure>
+<p> <strong>其他依赖</strong><br>debian和ubuntu执行下面语句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt  -y install build-essential libpcre3 libpcre3-dev zlib1g-dev git  dbus manpages-dev aptitude g++</span><br></pre></td></tr></table></figure>
+<p>centos执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install pcre pcre-devel zlib-devel epel-release gcc gcc-c++</span><br></pre></td></tr></table></figure>
+<h4 id="2-下载解压nginx源码"><a href="#2-下载解压nginx源码" class="headerlink" title="2.下载解压nginx源码"></a>2.下载解压nginx源码</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -nc --no-check-certificate http:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.18.0.tar.gz -P &#x2F;usr&#x2F;local&#x2F;src</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tar -zxvf &#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx-1.18.0.tar.gz -C &#x2F;usr&#x2F;local&#x2F;src</span><br></pre></td></tr></table></figure>
+<h4 id="3-编译和安装nginx"><a href="#3-编译和安装nginx" class="headerlink" title="3.编译和安装nginx"></a>3.编译和安装nginx</h4><p><strong>编译配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx-1.18.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;etc&#x2F;nginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure --prefix&#x3D;&#x2F;etc&#x2F;nginx \</span><br><span class="line">        --with-http_ssl_module \</span><br><span class="line">        --with-http_gzip_static_module \</span><br><span class="line">        --with-http_stub_status_module \</span><br><span class="line">        --with-pcre \</span><br><span class="line">        --with-http_realip_module \</span><br><span class="line">        --with-http_flv_module \</span><br><span class="line">        --with-http_mp4_module \</span><br><span class="line">        --with-http_secure_link_module \</span><br><span class="line">        --with-http_v2_module \</span><br><span class="line">        --with-cc-opt&#x3D;&#39;-O3&#39; \</span><br><span class="line">        --with-openssl&#x3D;..&#x2F;openssl-1.1.1g</span><br></pre></td></tr></table></figure>
+<p> <strong>.编译&amp;&amp;安装</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p><strong>修改基本配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sed -i &#39;s&#x2F;#user  nobody;&#x2F;user  root;&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;s&#x2F;worker_processes  1;&#x2F;worker_processes  3;&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;s&#x2F;    worker_connections  1024;&#x2F;    worker_connections  4096;&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;$i include conf.d&#x2F;*.conf;&#39; &#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;&#x2F;listen       80;&#x2F;a\       return 301 https:&#x2F;&#x2F;$http_host$request_uri;&#39; &#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</span><br></pre></td></tr></table></figure>
+<p> <strong>删除临时文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf &#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx-1.18.0</span><br><span class="line">rm -rf &#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx-1.18.0.tar.gz </span><br><span class="line">rm -rf &#x2F;usr&#x2F;local&#x2F;src&#x2F;openssl-1.1.1g</span><br><span class="line">rm -rf &#x2F;usr&#x2F;local&#x2F;src&#x2F;openssl-1.1.1g.tar.gz</span><br></pre></td></tr></table></figure>
+<p><strong>添加配置文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;conf.d</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：将下面代码中的端口号、域名和伪装网站目录修改成你自己的</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> cat &gt;&#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;conf.d&#x2F;default.conf &lt;&lt;EOF</span><br><span class="line">  server &#123;</span><br><span class="line">    listen 自定义一个1-65535的端口，不能是443;</span><br><span class="line">    server_name 你的域名;</span><br><span class="line">    root &#x2F;usr&#x2F;wwwroot;</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate   &#x2F;data&#x2F;example.com&#x2F;fullchain.crt;</span><br><span class="line">    ssl_certificate_key  &#x2F;data&#x2F;example.com&#x2F;example.com.key;</span><br><span class="line">	ssl_ciphers                 TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+ECDSA+AES128:EECDH+aRSA+AES128:RSA+AES128:EECDH+ECDSA+AES256:EECDH+aRSA+AES256:RSA+AES256:EECDH+ECDSA+3DES:EECDH+aRSA+3DES:RSA+3DES:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers    on;</span><br><span class="line">    ssl_protocols                TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;</span><br><span class="line">    ssl_session_cache            shared:SSL:50m;</span><br><span class="line">    ssl_session_timeout          1d;</span><br><span class="line">    ssl_session_tickets          on;</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h4 id="4-配置nginx服务"><a href="#4-配置nginx服务" class="headerlink" title="4.配置nginx服务"></a>4.配置nginx服务</h4><p><strong>创建服务文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &gt;&#x2F;etc&#x2F;systemd&#x2F;system&#x2F;nginx.service &lt;&lt;EOF</span><br><span class="line">[Unit]</span><br><span class="line">Description&#x3D;The NGINX HTTP and reverse proxy server</span><br><span class="line">After&#x3D;syslog.target network.target remote-fs.target nss-lookup.target</span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;forking</span><br><span class="line">PIDFile&#x3D;&#x2F;etc&#x2F;nginx&#x2F;logs&#x2F;nginx.pid</span><br><span class="line">ExecStartPre&#x3D;&#x2F;etc&#x2F;nginx&#x2F;sbin&#x2F;nginx -t</span><br><span class="line">ExecStart&#x3D;&#x2F;etc&#x2F;nginx&#x2F;sbin&#x2F;nginx -c &#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</span><br><span class="line">ExecReload&#x3D;&#x2F;etc&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reload</span><br><span class="line">ExecStop&#x3D;&#x2F;bin&#x2F;kill -s QUIT \$MAINPID</span><br><span class="line">PrivateTmp&#x3D;true</span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p><strong>加载并启动nginx</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
+<p><strong>其他命令</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start nginx  -启动</span><br><span class="line">systemctl stop nginx  -停止</span><br></pre></td></tr></table></figure>
+<h3 id="安装伪装网站"><a href="#安装伪装网站" class="headerlink" title="安装伪装网站"></a>安装伪装网站</h3><p><strong>创建伪装网站目录</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;usr&#x2F;wwwroot</span><br></pre></td></tr></table></figure>
+<p><strong>下载伪装网站</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone  https:&#x2F;&#x2F;github.com&#x2F;JeannieStudio&#x2F;Programming.git &#x2F;usr&#x2F;wwwroot</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装v2ray"><a href="#安装v2ray" class="headerlink" title="安装v2ray"></a>安装v2ray</h3><p><strong>用官方快速安装脚本，地址：</strong><a href="https://github.com/v2fly/fhs-install-v2ray" target="_blank" rel="noopener">https://github.com/v2fly/fhs-install-v2ray</a></p>
+<p><strong>安装cURL</strong><br>debian或ubuntu:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install curl</span><br></pre></td></tr></table></figure>
+<p>centOS：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum makecache</span><br><span class="line">yum install curl</span><br></pre></td></tr></table></figure>
+<p><strong>使用一键脚本下载并安装v2ray</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -O https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;v2fly&#x2F;fhs-install-v2ray&#x2F;master&#x2F;install-release.sh</span><br><span class="line">curl -O https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;v2fly&#x2F;fhs-install-v2ray&#x2F;master&#x2F;install-dat-release.sh</span><br></pre></td></tr></table></figure>
+<p><strong>安装完成以后要修改一下后台服务文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &gt;&#x2F;etc&#x2F;systemd&#x2F;system&#x2F;v2ray.service &lt;&lt;EOF</span><br><span class="line">[Unit]</span><br><span class="line">Description&#x3D;V2Ray Service</span><br><span class="line">After&#x3D;network.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">User&#x3D;root</span><br><span class="line">CapabilityBoundingSet&#x3D;CAP_NET_ADMIN CAP_NET_BIND_SERVICE</span><br><span class="line">AmbientCapabilities&#x3D;CAP_NET_ADMIN CAP_NET_BIND_SERVICE</span><br><span class="line">NoNewPrivileges&#x3D;true</span><br><span class="line">Environment&#x3D;V2RAY_LOCATION_ASSET&#x3D;&#x2F;usr&#x2F;local&#x2F;share&#x2F;v2ray&#x2F;</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;v2ray -config &#x2F;usr&#x2F;local&#x2F;etc&#x2F;v2ray&#x2F;config.json</span><br><span class="line">Restart&#x3D;on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h4 id="配置v2ray"><a href="#配置v2ray" class="headerlink" title="配置v2ray"></a>配置v2ray</h4><p>参考官方给的配置即可：<a href="https://github.com/v2fly/v2ray-examples" target="_blank" rel="noopener">https://github.com/v2fly/v2ray-examples</a><br>生成uuid的命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;random&#x2F;uuid</span><br></pre></td></tr></table></figure>
+<p>配置v2ray服务器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;v2ray&#x2F;config.json &lt;&lt;EOF</span><br><span class="line">&#123;</span><br><span class="line">    &quot;log&quot;: &#123;</span><br><span class="line">        &quot;loglevel&quot;: &quot;warning&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;inbounds&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;port&quot;: 443,</span><br><span class="line">            &quot;protocol&quot;: &quot;vless&quot;,</span><br><span class="line">            &quot;settings&quot;: &#123;</span><br><span class="line">                &quot;clients&quot;: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;id&quot;: &quot;&quot;, &#x2F;&#x2F; 填写你的 UUID</span><br><span class="line">                        &quot;level&quot;: 0,</span><br><span class="line">                        &quot;email&quot;: &quot;love@v2fly.org&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">                &quot;decryption&quot;: &quot;none&quot;,</span><br><span class="line">                &quot;fallbacks&quot;: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;dest&quot;: &quot;&#x2F;dev&#x2F;shm&#x2F;default.sock&quot;,</span><br><span class="line">                        &quot;xver&quot;: 1</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;alpn&quot;: &quot;h2&quot;,</span><br><span class="line">                        &quot;dest&quot;: &quot;&#x2F;dev&#x2F;shm&#x2F;h2.sock&quot;,</span><br><span class="line">                        &quot;xver&quot;: 1</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;streamSettings&quot;: &#123;</span><br><span class="line">                &quot;network&quot;: &quot;tcp&quot;,</span><br><span class="line">                &quot;security&quot;: &quot;tls&quot;,</span><br><span class="line">                &quot;tlsSettings&quot;: &#123;</span><br><span class="line">                    &quot;alpn&quot;: [</span><br><span class="line">                        &quot;h2&quot;,</span><br><span class="line">                        &quot;http&#x2F;1.1&quot;</span><br><span class="line">                    ],</span><br><span class="line">                    &quot;certificates&quot;: [</span><br><span class="line">                        &#123;</span><br><span class="line">                            &quot;certificateFile&quot;: &quot;&#x2F;path&#x2F;to&#x2F;fullchain.crt&quot;, &#x2F;&#x2F; 换成你的证书，绝对路径</span><br><span class="line">                            &quot;keyFile&quot;: &quot;&#x2F;path&#x2F;to&#x2F;private.key&quot; &#x2F;&#x2F; 换成你的私钥，绝对路径</span><br><span class="line">                        &#125;</span><br><span class="line">                    ]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;outbounds&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;protocol&quot;: &quot;freedom&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p>执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl restart v2ray</span><br></pre></td></tr></table></figure>
+
+<p>相关命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start v2ray    启动v2ray</span><br><span class="line">systemctl stop v2ray     停止v2ray</span><br><span class="line">systemctl status v2ray   查看v2ray状态</span><br></pre></td></tr></table></figure>
+<h3 id="客户端下载和配置"><a href="#客户端下载和配置" class="headerlink" title="客户端下载和配置"></a>客户端下载和配置</h3><p><strong>1.win平台：</strong><br>下载Qv2ray，使用手册：这里：<a href="https://qv2ray.net/getting-started/" target="_blank" rel="noopener">https://qv2ray.net/getting-started/</a></p>
+<p>（1）下载Qv2ray: <a href="https://github.com/Qv2ray/Qv2ray/releases" target="_blank" rel="noopener">https://github.com/Qv2ray/Qv2ray/releases</a></p>
+<p>windows用户下载：Qv2ray.v2.6.3.Windows-x64.7z，并解压即可。</p>
+<h3 id="打赏"><a href="#打赏" class="headerlink" title="打赏"></a>打赏</h3><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>clash小猫咪的安装和使用</title>
     <url>/2020/07/31/clash%E5%B0%8F%E7%8C%AB%E5%92%AA%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="clash简介"><a href="#clash简介" class="headerlink" title="clash简介"></a>clash简介</h2><p><strong><em>clash(又称小猫咪)，是一款客户端代理软件，大家都应该用过windows客户端代理软件shadowsocks、v2rayN、Trojan-Qt5等，clash就和这些软件的功能类似，但又不完全一样。</em></strong></p>
@@ -20,7 +107,7 @@
   </entry>
   <entry>
     <title>手动搭建Trojan-go+Nginx+Tls</title>
-    <url>/2020/07/17/%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BATrojan-go+Nginx+Tls/</url>
+    <url>/2020/07/17/%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BATrojan-go+Nginx+Tls%20-%20%E5%89%AF%E6%9C%AC/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>很多小伙伴在使用一键脚本搭建trojan-go实现科学上网的时候，偶尔会出现失败的情况，不妨试试手动搭建，花几分钟而已，100%成功，何乐而不为呢?</strong></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CqoSD0M1HG8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -171,9 +258,9 @@
     <url>/2020/06/01/Jeannie%E5%87%BA%E5%93%81-%E9%92%88%E5%AF%B9v2ray%20core%E7%9A%84%E9%87%8D%E5%A4%A7%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%EF%BC%8C%E8%BF%9B%E8%A1%8C6%E5%90%881%E8%84%9A%E6%9C%AC%E7%9A%84%E6%9B%B4%E6%96%B0/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>针对v2ray在v4.23.2 前固定 TLS 密码套件潜在的特征识别风险，对6合1脚本做相应更新</strong></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cNSq5RdVf28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-### 情况1
-**如果已经安装了6合一脚本中的3或者4，请执行下面两句进行v2ray-core的更新：**
 
+
+<h3 id="情况1"><a href="#情况1" class="headerlink" title="情况1"></a>情况1</h3><p><strong>如果已经安装了6合一脚本中的3或者4，请执行下面两句进行v2ray-core的更新：</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -L -s https:&#x2F;&#x2F;install.direct&#x2F;go.sh)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service v2ray restart</span><br></pre></td></tr></table></figure>
@@ -777,6 +864,15 @@
 <p>从下面链接下载app-release.apk，完成后安装，安装完成后只需填入域名和密码1就可以了。<a href="https://github.com/trojan-gfw/igniter/releases" target="_blank" rel="noopener">https://github.com/trojan-gfw/igniter/releases</a></p>
 <p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E5%AE%89%E5%8D%9301----.jpg?raw=true" alt="如图"></p>
 <h2 id="捐助本站"><a href="#捐助本站" class="headerlink" title="捐助本站"></a>捐助本站</h2><p><img src="https://github.com/JeannieStudio/jeanniestudio.images/blob/master/%E6%8D%90%E5%8A%A92.png?raw=true" alt="二维码"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>windows传文件到linux</title>
+    <url>/2020/02/20/windows%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0Linux/</url>
+    <content><![CDATA[<h4 id="打开cmd-执行"><a href="#打开cmd-执行" class="headerlink" title="打开cmd,执行"></a>打开cmd,执行</h4><p>修改/etc/ssh/sshd_config文件的<br>PasswordAuthentication no改为yes</p>
+<p>使用如下指令重启 SSH 服务：<br>service sshd restart</p>
+<h4 id="打开cmd-执行-1"><a href="#打开cmd-执行-1" class="headerlink" title="打开cmd,执行"></a>打开cmd,执行</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pscp -P 22 trojan-go_install.sh root@34.123.143.11:&#x2F;root</span><br></pre></td></tr></table></figure>
+
 ]]></content>
   </entry>
   <entry>
